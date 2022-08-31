@@ -1,11 +1,11 @@
-class EarthQuackModel {
-  EarthQuackModel({
+class EarthquakeModel {
+  EarthquakeModel({
       this.type, 
       this.metadata, 
       this.features, 
       this.bbox,});
 
-  EarthQuackModel.fromJson(dynamic json) {
+  EarthquakeModel.fromJson(dynamic json) {
     type = json['type'];
     metadata = json['metadata'] != null ? Metadata.fromJson(json['metadata']) : null;
     if (json['features'] != null) {
@@ -20,11 +20,11 @@ class EarthQuackModel {
   Metadata? metadata;
   List<Features>? features;
   List<num>? bbox;
-  EarthQuackModel copyWith({  String? type,
+  EarthquakeModel copyWith({  String? type,
   Metadata? metadata,
   List<Features>? features,
   List<num>? bbox,
-}) => EarthQuackModel(  type: type ?? this.type,
+}) => EarthquakeModel(  type: type ?? this.type,
   metadata: metadata ?? this.metadata,
   features: features ?? this.features,
   bbox: bbox ?? this.bbox,

@@ -1,10 +1,11 @@
 
-import 'package:earthquack_apps_by_rest_api/utility/utili.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-
+import '../models/data_model.dart';
+import '../models/data_model.dart';
 import '../providers/eq_data_providers.dart';
+import '../utility/utili.dart';
 
 class EarthQuakePage extends StatefulWidget {
   static const String routeName="earthquake";
@@ -24,7 +25,7 @@ class _EarthQuakePageState extends State<EarthQuakePage> {
   void didChangeDependencies() {
     // TODO: implement didChangeDependencies
     if (isFirst) {
-      Provider.of<EqDataProvider>(context,listen: false).getCurrentDate();
+      Provider.of<EarthquakeProvider>(context,listen: false).getCurrentData();
 
       isFirst = false;
     }
@@ -124,15 +125,15 @@ class _EarthQuakePageState extends State<EarthQuakePage> {
           SizedBox(height: 10,),
           Text("Your Selected Survay Data"),
           SizedBox(height: 10,),
-          Consumer<EqDataProvider>(
+          Consumer<EarthquakeProvider>(
               builder: (context, provider, child) =>
-          provider.earthQuackModel==null?Text("Empty"):
+          provider.earthquakeModel==null?Text("Empty"):
           Expanded(
             child: ListView.builder(
               shrinkWrap: true,
-                itemCount:provider.earthQuackModel!.features!.length ,
+                itemCount:provider.earthquakeModel!.features!.length ,
                 itemBuilder: (context,index){
-              final model= provider.earthQuackModel!.features![index];
+              final model= provider.earthquakeModel!.features![index];
               return ListTile(
                   tileColor: Colors.cyan,
                   leading: Card(
@@ -189,9 +190,9 @@ class _EarthQuakePageState extends State<EarthQuakePage> {
   }
   void _getData(BuildContext context)async{
     minValue=minValueController.text;
-    final provider= Provider.of<EqDataProvider>(context,listen: false);
+    final provider= Provider.of<EarthquakeProvider>(context,listen: false);
     provider.setNewDate(startTime!, endTime!, minValue!);
-    provider.getCurrentDate();
+    provider.getCurrentData();
 
 
   }
