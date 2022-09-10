@@ -1,1 +1,1 @@
-# EarthQuackApp Using Rest API & Providers
+# EarthQuackApp Using Rest API & Provider
